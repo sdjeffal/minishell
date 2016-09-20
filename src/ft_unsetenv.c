@@ -47,6 +47,7 @@ int	ft_unsetenv(char **args, t_env **lst)
 			msgerror("unsetenv: Too few arguments.");
 			return (-1);
 		}
+		ft_freetab(vars);
 	}
 	else
 	{

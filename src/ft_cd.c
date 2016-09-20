@@ -98,5 +98,6 @@ int	ft_cd(char **args, t_env **lst)
 		ret = ft_goto(path, oldpwd, lst);
 		ft_memdel((void**)&path);
 	}
+	ft_freetab(vars);
 	return (ret);
 }

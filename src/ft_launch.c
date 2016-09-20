@@ -83,31 +83,22 @@ int	ft_launch(char **args, t_env **lst)
 	char **envp;
 	char *cmd;
 	char *tmp;
+	char *tmp2;
 	int status;
-	int	i;
 
-	i = 0;
 	cmd = ft_findpath(args[0], lst);
 	if (cmd)
 	{
-		tmp = ft_strjoin(cmd, " ");
-		tmp = ft_fstrjoin(tmp, args[1], 1);
-		arg = ft_parse_launch(tmp);
-		envp = envtotab(lst);
-	/**
-	ft_putstr("path cmd: ");
-	ft_putendl(cmd);
-	ft_putstr("argument: ");
-	while (arg[i])
-		ft_putendl(arg[i++]);
-	**/
+		tmp = ft_fstrjoin(cmd, " ", 3);
+		tmp2 = ft_fstrjoin(tmp, args[1], 3);
+		arg = ft_parse_launch(tmp2);
+			envp = envtotab(lst);
 		status = ft_exec(cmd, arg, envp);
 		ft_memdel((void**)&cmd);
 		ft_memdel((void**)&tmp);
-		if (arg && arg[0])
-			ft_freetab(arg);
-		if (envp && envp[0])
-			ft_freetab(envp);
+		ft_memdel((void**)&tmp2);
+		ft_freetab(arg);
+		ft_freetab(envp);
 	}
 	else
 		status = EXIT_FAILURE;
