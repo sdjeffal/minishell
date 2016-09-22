@@ -32,7 +32,7 @@ char	*ft_findpath(char *cmd, t_env **lst)
 	tmp = getpath("PATH", lst);
 	while (tmp && tmp[i])
 	{
-		if (tmp[i][ft_strlen(tmp[i])] != '/')
+		if (tmp[i][ft_strlen(tmp[i]) - 1] != '/')
 			tmp[i] = ft_fstrjoin(tmp[i], "/", 1);
 		tmp[i] = ft_fstrjoin(tmp[i], cmd, 1);
 		if (access(tmp[i], F_OK) != -1)

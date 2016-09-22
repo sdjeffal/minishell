@@ -35,8 +35,7 @@ static int		ft_minishell(t_env **lstenv)
 	status = 0;
 	while (42)
 	{
-		//ft_putprompt(lstenv);
-		ft_putstr(PROMPT);
+		ft_putprompt(lstenv);
 		get_next_line(0, &line);
 		args = splitline(line);
 		status = execute(line, args, lstenv);

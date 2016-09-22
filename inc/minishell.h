@@ -37,6 +37,7 @@ void	ft_cleanenv(t_env **lst);
 void	ft_putprompt(t_env	**lst);
 
 //parsing.c
+char	**ft_parsing(char *line);
 char	**splitline(char *line);
 char	*strtrimdelimit(char const *s);
 
@@ -79,6 +80,7 @@ char			**envtotab(t_env **env);
 char			*ft_gethome(t_env **env);
 
 //tools.c
-char	**ft_parsing(char *line);
 char	**getpath(char *name, t_env **env);
+char	*findcdpath(char *s, t_env **lst);
+
 #endif

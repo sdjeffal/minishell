@@ -66,10 +66,10 @@ char	*initpath(char *arg, t_env **lst, char *oldpwd)
 			path = ft_strdup(oldpwd);
 			ft_putendl(path);
 		}
-		else
-			path = NULL;
 	}
-	else
+	else if ((path = findcdpath(arg, lst)) != NULL)
+		ft_putendl(path);
+	else 
 		path = ft_strdup(arg);
 	return (path);
 }
