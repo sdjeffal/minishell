@@ -1,4 +1,5 @@
 #include "../inc/minishell.h"
+#include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
 

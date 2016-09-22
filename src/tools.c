@@ -23,7 +23,8 @@ char	*findcdpath(char *s, t_env **lst)
 	int		i;
 
 	path = NULL;
-	if (ft_strcmp(s, "/") != 0 && (cdpath = getpath("CDPATH", lst)))
+	if (!ft_strcmp(s, "/")  && !ft_strcmp(s, ".") && !ft_strcmp(s, "..") && 
+	!ft_strcmp(s, "./") && !ft_strcmp(s, "../") && (cdpath = getpath("CDPATH", lst)))
 	{
 		i = -1;
 		while (cdpath[++i])
@@ -42,4 +43,17 @@ char	*findcdpath(char *s, t_env **lst)
 		ft_freetab(cdpath);
 	}
 	return (path);
+}
+
+int		ft_tabcount(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (tab)
+	{
+		while (tab[i])
+			i++;
+	}
+	return (i);
 }

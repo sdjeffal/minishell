@@ -10,16 +10,17 @@
 
 # define PROMPT "$>"
 
-typedef struct stat		t_stat;
+typedef struct	stat	t_stat;
 
 typedef struct	s_env
 {
-	char *key;
-	char *value;
-	struct s_env *next;
+	char	*key;
+	char	*value;
+	struct	s_env *next;
 }				t_env;
 
 int		execute(char *line, char **args, t_env **lst);
+
 //lstenv.c
 t_env	*newvar(char *key, char *value);
 void	pushback(char *key, char *value, t_env **begin);
@@ -50,12 +51,14 @@ int		ft_cd(char **args, t_env **lst);
 int		ft_env(char **args, t_env **lst);
 int		builtin(char **args, t_env **lst);
 void	ft_exit(char *line, char **args, t_env **lst);
+
 //ft_echo_option.c
 void	putbackslash(char *str, char *option);
 
 //ft_launcher.c
 int		ft_launch(char **args, t_env** lst);
-//ft_pwd
+
+//ft_pwd.c
 char	*ft_getcwd(t_env **env);
 
 //msgerror.c
@@ -64,23 +67,27 @@ void	msgexit(const char *s);
 void	msgerror(const char *s);
 
 //ft_setenv
-void			setter_env(char **args, int n, t_env **lst);
-void			ft_putenv(t_env **lst);
+void	setter_env(char **args, int n, t_env **lst);
+void	ft_putenv(t_env **lst);
 
 //ft_unsetenv
-int				delvar(char *key, t_env **lst);
+int		delvar(char *key, t_env **lst);
 
 //ft_strsplitshell.c
-char			**ft_strsplitshell(char const *s);
+char	**ft_strsplitshell(char const *s);
+
+//stat.c
+char	istypefile(char *pathfile);
 
 //utils.c
-char			*replacevar(char *str, t_env **lst);
-char			**ft_freetab(char **tab);
-char			**envtotab(t_env **env);
-char			*ft_gethome(t_env **env);
+char	*replacevar(char *str, t_env **lst);
+char	**ft_freetab(char **tab);
+char	**envtotab(t_env **env);
+char	*ft_gethome(t_env **env);
 
 //tools.c
 char	**getpath(char *name, t_env **env);
 char	*findcdpath(char *s, t_env **lst);
+int		ft_tabcount(char **tab);
 
 #endif

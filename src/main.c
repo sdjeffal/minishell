@@ -28,6 +28,7 @@ int		execute(char *line, char **args, t_env **lst)
 static int		ft_minishell(t_env **lstenv)
 {
 	char	*line;
+	char	**cmd;
 	char	**args;
 	int		status;
 	int		i;
@@ -35,15 +36,20 @@ static int		ft_minishell(t_env **lstenv)
 	status = 0;
 	while (42)
 	{
+		i = -1;
 		ft_putprompt(lstenv);
 		get_next_line(0, &line);
-		args = splitline(line);
-		status = execute(line, args, lstenv);
-		ft_putnendl(status);
+		cmd = ft_strsplit(line, ';');
+		while (cmd[++i])
+		{
+			args = splitline(cmd[i]);
+			status = execute(cmd[i], args, lstenv);
+			ft_freetab(args);
+		}
 		ft_memdel((void**)&line);
-		ft_freetab(args);
+		ft_freetab(cmd);
 	}
-	return (status);;
+	return (status);
 }
 
 int	main(int ac, char **av, const char **environ)

@@ -10,18 +10,19 @@ static int	ft_chdir(char *path)
 	ret = chdir(path);
 	if (ret < 0)
 	{
+		ft_putstr_fd("cd: ", 2);
+		ft_putstr_fd(path, 2);
+		ft_putstr_fd(": ", 2);
 		ret = -1;
 		if (access(path, F_OK) != -1)
 		{
-			ft_putstr_fd("cd: ", 2);
-			ft_putstr_fd(path, 2);
-			if (access(path, X_OK) != -1)
-				msgerror(" is not directory");
-			else
-				msgerror(" no permission");
+			if (ft_strchr("-bcps", istypefile(path)))
+				msgerror("Not a directory.");
+			else if (access(path, X_OK) == -1)
+				msgerror("Permission denied.");
 		}
 		else
-			msgerror("cd: no such file or directory");
+			msgerror("No such file or directory.");
 	}
 	else
 		ret = EXIT_SUCCESS;
@@ -48,7 +49,7 @@ static int	ft_goto(char *path, char *oldpwd, t_env **lst)
 	return (ret);
 }
 
-char	*initpath(char *arg, t_env **lst, char *oldpwd)
+static char	*initpath(char *arg, t_env **lst, char *oldpwd)
 {
 	char	*path;
 	char	*tmp;
@@ -74,21 +75,19 @@ char	*initpath(char *arg, t_env **lst, char *oldpwd)
 	return (path);
 }
 
-int	ft_cd(char **args, t_env **lst)
+static int	ft_cdcore(char **args, char *oldpwd, t_env **lst)
 {
 	char	**vars;
 	char	*path;
-	t_env	*env;
 	int		ret;
-	static char	oldpwd[PATH_MAX + 1];
-
-	ret = 0;
-	if (oldpwd[0] == '\0')
-	{
-		if ((env = findvar("OLDPWD", lst)) && env->value)
-			ft_memcpy(oldpwd, env->value, ft_strlen(env->value));
-	}
+	
 	vars = ft_parsing(args[1]);
+	ret = ft_tabcount(vars);
+	if (ret > 1)
+	{
+		msgerror("cd: Too many arguments.");
+		return (-1);
+	}
 	if (vars && vars[0])
 		path = initpath(vars[0], lst, oldpwd);
 	else
@@ -99,5 +98,21 @@ int	ft_cd(char **args, t_env **lst)
 		ft_memdel((void**)&path);
 	}
 	ft_freetab(vars);
+	return (ret);
+}
+
+int			ft_cd(char **args, t_env **lst)
+{
+	t_env	*env;
+	int		ret;
+	static char	oldpwd[PATH_MAX + 1];
+
+	ret = 0;
+	if (oldpwd[0] == '\0')
+	{
+		if ((env = findvar("OLDPWD", lst)) && env->value)
+			ft_memcpy(oldpwd, env->value, ft_strlen(env->value));
+	}
+	ret = ft_cdcore(args, oldpwd, lst);
 	return (ret);
 }

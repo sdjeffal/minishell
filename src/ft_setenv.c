@@ -44,8 +44,7 @@ int				ft_setenv(char **args, t_env **lst)
 	{
 		vars = ft_parsing(args[1]);
 		i = 0;
-		while (vars[i])
-			i++;
+		i = ft_tabcount(vars);
 		if (i > 2)
 		{
 			msgerror("setenv: too many arguments.");

@@ -41,18 +41,13 @@ int	ft_unsetenv(char **args, t_env **lst)
 		{
 			while (vars[++i])
 				delvar(vars[i], lst);
+			i = EXIT_SUCCESS;
 		}
 		else
-		{
 			msgerror("unsetenv: Too few arguments.");
-			return (-1);
-		}
 		ft_freetab(vars);
 	}
 	else
-	{
 		msgerror("unsetenv: Too few arguments.");
-		return (-1);
-	}
-	return (EXIT_SUCCESS);
+	return (i);
 }
