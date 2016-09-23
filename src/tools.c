@@ -57,3 +57,58 @@ int		ft_tabcount(char **tab)
 	}
 	return (i);
 }
+
+char *delonepath(char *path)
+{
+	int		i;
+	int		j;
+	char	**tab;
+	char	*s;
+
+	j = 0;
+	tab = ft_strsplit(path, '/');
+	j = ft_tabcount(tab) - 1;
+	s = ft_strdup("/");
+	if (tab && j > 0)
+	{
+	 	i = -1;
+		while (tab && tab[++i] && i < j)
+		{
+			if (i > 0)
+				s = ft_fstrjoin(s, "/", 1);
+			s = ft_fstrjoin(s, tab[i], 1);
+		}
+		ft_freetab(tab);
+		ft_memdel((void**)&path);
+	}
+	return (s);
+}
+
+char	*joinpath(char	*dest, char *src, char *oldpwd)
+{
+	char	**tabpath;
+	int		i;
+	char	*s;
+
+	if (ft_strcmp(src, oldpwd) == 0)
+		s = ft_strdup(src);
+	else
+	{
+		s = ft_strdup(dest);
+		tabpath = ft_strsplit(src, '/');
+		i = 0;
+		while (tabpath && tabpath[i])
+		{
+			if (ft_strcmp(tabpath[i], "..") == 0)
+				s = delonepath(s);
+			else if (ft_strcmp(tabpath[i], ".") != 0)
+			{
+				s = ft_fstrjoin(s, "/", 1);
+				s = ft_fstrjoin(s, tabpath[i], 1);
+			}
+			i++;
+		}
+		ft_freetab(tabpath);
+	}
+	return (s);
+}

@@ -34,6 +34,9 @@ char	**splitenv(const char *str);
 t_env	*ft_cpylst(t_env **src);
 void	ft_cleanenv(t_env **lst);
 
+//ft_pwd.c
+void	ft_getcwd(char *cwd, int len, t_env **lst);
+
 //ft_putprompt.c
 void	ft_putprompt(t_env	**lst);
 
@@ -57,9 +60,6 @@ void	putbackslash(char *str, char *option);
 
 //ft_launcher.c
 int		ft_launch(char **args, t_env** lst);
-
-//ft_pwd.c
-char	*ft_getcwd(t_env **env);
 
 //msgerror.c
 void	msgerropt(char c);
@@ -89,5 +89,7 @@ char	*ft_gethome(t_env **env);
 char	**getpath(char *name, t_env **env);
 char	*findcdpath(char *s, t_env **lst);
 int		ft_tabcount(char **tab);
+char	*joinpath(char	*dest, char *src, char *oldpwd);
+char	*delonepath(char *path);
 
 #endif

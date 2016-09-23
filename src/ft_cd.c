@@ -34,13 +34,22 @@ static int	ft_goto(char *path, char *oldpwd, t_env **lst)
 	t_env	*env;
 	char	newcwd[PATH_MAX + 1];
 	char	oldcwd[PATH_MAX + 1];
+	char	*tmp;
 	int		ret;
 
-	getcwd(oldcwd, PATH_MAX + 1);
+	ft_bzero(newcwd, PATH_MAX + 1);
+	ft_getcwd(oldcwd, PATH_MAX + 1, lst);
+	if (istypefile(path) == 'l')
+	{
+		tmp = joinpath(oldcwd, path, oldpwd);
+		ft_strcpy(newcwd, tmp);
+		ft_memdel((void**)&tmp);
+	}
 	if ((ret = ft_chdir(path)) == 0)
 	{
 		ft_memcpy(oldpwd, oldcwd, PATH_MAX + 1);
-		getcwd(newcwd, PATH_MAX + 1);
+		if (!newcwd[0])
+			getcwd(newcwd, PATH_MAX + 1);
 		if (!(env = updatevar("PWD", newcwd, lst)))
 			pushback("PWD", newcwd, lst);
 		if (!(env = updatevar("OLDPWD", oldcwd, lst)))

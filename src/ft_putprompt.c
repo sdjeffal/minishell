@@ -25,21 +25,39 @@ void	ft_putcwd(char *cwd, struct passwd *pw)
 		ft_putstr(cwd);
 }
 
-void	ft_putprompt(t_env	**lst)
+static char	*ft_initpwd(t_env **lst)
+{
+	char	cwd[PATH_MAX + 1];
+	t_env	*env_pwd;
+	char	*pwd;
+
+	pwd = NULL;
+	if ((env_pwd = findvar("PWD", lst)))
+		pwd = ft_strdup(env_pwd->value);
+	else if (getcwd(cwd, PATH_MAX + 1))
+		pwd = ft_strdup(cwd);
+	return (pwd);
+}
+
+void		ft_putprompt(t_env	**lst)
 {
 	struct passwd	*pw;
-	char	cwd[PATH_MAX];
+	char			*cwd;
 
-	getcwd(cwd, PATH_MAX);
+	cwd = ft_initpwd(lst);;
 	pw = getpwuid(getuid());
 	if (pw && pw->pw_name && cwd[0])
 	{
 		ft_putstr(pw->pw_name);
 		ft_putstr("@:");
 		ft_putcwd(cwd, pw);
+		ft_memdel((void**)&cwd);
 	}
 	else if (cwd[0])
+	{
 		ft_putstr(cwd);
+		ft_memdel((void**)&cwd);
+	}
 	else if (pw && pw->pw_name)
 		ft_putstr(pw->pw_name);
 	ft_putstr(PROMPT);

@@ -3,7 +3,8 @@
 #include <unistd.h>
 #include <limits.h>
 
-char	*ft_getcwd(t_env **env)
+/**
+static char	*ft_getcwd(t_env **env)
 {
 	t_env			*home;
 	char			*cwd;
@@ -19,12 +20,23 @@ char	*ft_getcwd(t_env **env)
 	}
 	return (NULL);
 }
-
-int		ft_pwd(char **args, t_env **lst)
+**/
+void	ft_getcwd(char *cwd, int len, t_env **lst)
 {
-	char	*cwd;
+	t_env	*env;
+
+	ft_bzero(cwd, len);
+	if ((env = findvar("PWD", lst)) && env->value)
+		ft_memcpy(cwd, env->value, ft_strlen(env->value));
+	else
+		getcwd(cwd, len);
+}
+
+int			ft_pwd(char **args, t_env **lst)
+{
+	char	cwd[PATH_MAX + 1];
 	
-	cwd = ft_getcwd(lst);
+	ft_getcwd(cwd, PATH_MAX + 1, lst);
 	ft_putendl(cwd);
 	return (EXIT_SUCCESS);
 }
