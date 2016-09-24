@@ -44,8 +44,6 @@ char	*ft_findpath(char *cmd, t_env **lst)
 		i++;
 	}
 	ft_freetab(tmp);
-	if (ft_strnstr(cmd, "./", 2))
-		return (path = ft_strdup(cmd));
 	return (path);
 }
 
