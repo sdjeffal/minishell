@@ -49,13 +49,13 @@ char	*ft_findpath(char *cmd, t_env **lst)
 
 int		ft_exec(char *cmd, char **args, char **env)
 {
-	int   status;
-	pid_t pid_p;
+	int		status;
+	pid_t	pid_p;
 
 	if (access(cmd, F_OK) != -1)
 	{
-		if (access(cmd, X_OK) == -1)
-			msgerror("no permission");
+		if ((status = access(cmd, X_OK)) == -1)
+			msgerror("Permission denied");
 		else
 		{
 			pid_p = fork();
@@ -65,7 +65,7 @@ int		ft_exec(char *cmd, char **args, char **env)
 					msgexit("not executable file");
 			}
 			else if (pid_p < 0)
-				msgexit("error memory fork: file:ft_launch -> function ft_exec");
+				msgexit("error memory fork: file:ft_launch->function ft_exec");
 			else
 				wait(&status);
 		}
@@ -77,12 +77,12 @@ int		ft_exec(char *cmd, char **args, char **env)
 
 int	ft_launch(char **args, t_env **lst)
 {
-	char **arg;
-	char **envp;
-	char *cmd;
-	char *tmp;
-	char *tmp2;
-	int status;
+	char	**arg;
+	char	**envp;
+	char	*cmd;
+	char	*tmp;
+	char	*tmp2;
+	int		status;
 
 	cmd = ft_findpath(args[0], lst);
 	if (cmd)
