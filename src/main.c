@@ -65,4 +65,3 @@ int	main(int ac, char **av, const char **environ)
 	status = ft_minishell(&begin);
 	return (status);
 }
-

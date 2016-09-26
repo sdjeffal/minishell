@@ -90,7 +90,7 @@ char	*joinpath(char	*dest, char *src, char *oldpwd)
 	int		i;
 	char	*s;
 
-	if (ft_strcmp(src, oldpwd) == 0)
+	if (ft_strcmp(src, oldpwd) == 0 || src[0] == '/')
 		s = ft_strdup(src);
 	else
 	{
