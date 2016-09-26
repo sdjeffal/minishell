@@ -42,7 +42,7 @@ static void	modifyenv(char *var, t_env **lst)
 	{
 		tmp[0] = ft_strsub(var, 0, i);
 		s = ft_strchr(var, '=');
-		tmp[1] = strdup(++s);
+		tmp[1] = ft_strdup(++s);
 	}
 	if (tmp[0] && tmp[1])
 		setter_env(tmp, 2, lst);
