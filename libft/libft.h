@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/14 16:27:28 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/05/03 10:57:57 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/09/29 17:45:22 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int					ft_isprint(int c);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 void				ft_putchar_fd(char c, int fd);
+int					ft_putcharhex(char *str);
 void				ft_putendl(char const *s);
 void				ft_putnendl(int n);
 void				ft_putstr_fd(char const *s, int fd);

@@ -20,7 +20,7 @@ SRC =	ft_strcmp.c ft_strlen.c ft_strclen.c ft_strcpy.c ft_strnew.c\
 	ft_memcpy.c ft_memset.c ft_memalloc.c ft_memdel.c ft_memmove.c\
 	ft_memchr.c ft_memcmp.c ft_memccpy.c ft_putchar_fd.c ft_putendl.c\
 	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c\
-	ft_ishex.c ft_pow.c ft_hextodec.c\
+	ft_ishex.c ft_pow.c ft_hextodec.c ft_putcharhex.c\
 	ft_strlcat.c ft_strmap.c ft_putstr_fd.c ft_strnstr.c ft_putendl_fd.c\
 	ft_toupper.c ft_tolower.c ft_isspace.c ft_strsplit.c ft_putnendl.c\
 	ft_putnbr_fd.c ft_strmapi.c ft_striter.c ft_striteri.c ft_lstmap.c\
