@@ -69,18 +69,19 @@ static void		ft_parseparams(char **ar, char *opt, char **param, t_env **lst)
 	}
 }
 
-static char		**ft_parsing_echo(char *line, t_env **lst)
+static char		**ft_parsing_echo(char *line, int *status, t_env **lst)
 {
 	char	**args;
 	char	*tmp;
 	char	opt[3];
+	int		i;
 
 	ft_bzero(opt, 3); 
 	ft_memset(opt, '-', 2); 
 	tmp = strtrimdelimit(line);
 	if (tmp)
 	{
-		args = ft_strsplitshell(tmp);
+		*status = ft_strsplitecho(&args, tmp);
 		ft_memdel((void**)&tmp);
 		ft_parseparams(args, opt, &tmp, lst);
 		args = ft_freetab(args);
@@ -98,10 +99,16 @@ int	ft_echo(char **args, t_env **lst)
 {
 	char	**vars;
 	int		i;
+	int		status;
 
 	if (args[1])
 	{
-		vars = ft_parsing_echo(args[1], lst);
+		vars = ft_parsing_echo(args[1], &status, lst);
+		if (status == -1)
+		{
+			msgerror("Unmatched quote");
+			return (-1);
+		}
 		if (vars)
 		{
 			if (vars[0][1] == 'e')

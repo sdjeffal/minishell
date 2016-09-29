@@ -76,6 +76,9 @@ int		delvar(char *key, t_env **lst);
 //ft_strsplitshell.c
 char	**ft_strsplitshell(char const *s);
 
+//ft_strsplitecho.c
+int		ft_strsplitecho(char ***tab, char const *s);
+
 //stat.c
 char	istypefile(char *pathfile);
 
