@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/29 17:54:01 by sdjeffal          #+#    #+#             */
+/*   Updated: 2016/09/29 18:05:35 by sdjeffal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 #include <stdlib.h>
 
@@ -36,17 +48,17 @@ static int	ft_getoption(char **args, char *opt)
 			while (args[i][j] != '\0' && ft_strchr(option, args[i][j]))
 				j++;
 			if (args[i][j] != '\0')
-				break;
+				break ;
 			else
 				ft_updateoption(opt, args[i]);
 		}
 		else
-			break;
+			break ;
 	}
 	return (i);
 }
 
-static void		ft_parseparams(char **ar, char *opt, char **param, t_env **lst)
+static void	ft_parseparams(char **ar, char *opt, char **param, t_env **lst)
 {
 	char	*option;
 	int		i;
@@ -69,15 +81,15 @@ static void		ft_parseparams(char **ar, char *opt, char **param, t_env **lst)
 	}
 }
 
-static char		**ft_parsing_echo(char *line, int *status, t_env **lst)
+static char	**ft_parsing_echo(char *line, int *status, t_env **lst)
 {
 	char	**args;
 	char	*tmp;
 	char	opt[3];
 	int		i;
 
-	ft_bzero(opt, 3); 
-	ft_memset(opt, '-', 2); 
+	ft_bzero(opt, 3);
+	ft_memset(opt, '-', 2);
 	tmp = strtrimdelimit(line);
 	if (tmp)
 	{
@@ -85,7 +97,7 @@ static char		**ft_parsing_echo(char *line, int *status, t_env **lst)
 		ft_memdel((void**)&tmp);
 		ft_parseparams(args, opt, &tmp, lst);
 		args = ft_freetab(args);
-		if ((args = (char**)ft_memalloc(sizeof(char *) * 3)) ==	NULL)
+		if ((args = (char**)ft_memalloc(sizeof(char *) * 3)) == NULL)
 			msgexit("error malloc : function ft_parsing_echo");
 		args[0] = ft_strdup(opt);
 		args[1] = tmp;
@@ -95,15 +107,14 @@ static char		**ft_parsing_echo(char *line, int *status, t_env **lst)
 	return (args);
 }
 
-int	ft_echo(char **args, t_env **lst)
+int			ft_echo(char **args, t_env **lst)
 {
 	char	**vars;
 	int		i;
 	int		status;
 
-	if (args[1])
+	if (args[1] && (vars = ft_parsing_echo(args[1], &status, lst)))
 	{
-		vars = ft_parsing_echo(args[1], &status, lst);
 		if (status == -1)
 		{
 			msgerror("Unmatched quote");

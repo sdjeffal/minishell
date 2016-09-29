@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/29 16:55:23 by sdjeffal          #+#    #+#             */
+/*   Updated: 2016/09/29 16:56:27 by sdjeffal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 #include <stdlib.h>
 
@@ -29,8 +41,8 @@ char	**splitenv(const char *str)
 
 int		ft_cpyenv(const char **environ, t_env **begin)
 {
-	int i;
-	char **tmp;
+	int		i;
+	char	**tmp;
 
 	i = 0;
 	while (environ[i])
@@ -61,7 +73,7 @@ t_env	*ft_cpylst(t_env **src)
 	if (tmp)
 	{
 		while (tmp)
-		{	
+		{
 			pushback(tmp->key, tmp->value, &dest);
 			tmp = tmp->next;
 		}
@@ -81,7 +93,7 @@ void	ft_cleanenv(t_env **lst)
 		tmp = *lst;
 		while (tmp)
 		{
-			next = tmp->next ;
+			next = tmp->next;
 			freevar(&tmp);
 			tmp = next;
 		}

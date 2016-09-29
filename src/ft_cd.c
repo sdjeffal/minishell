@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/29 18:06:10 by sdjeffal          #+#    #+#             */
+/*   Updated: 2016/09/29 18:17:36 by sdjeffal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 #include <stdlib.h>
 #include <unistd.h>
@@ -79,7 +91,7 @@ static char	*initpath(char *arg, t_env **lst, char *oldpwd)
 	}
 	else if ((path = findcdpath(arg, lst)) != NULL)
 		ft_putendl(path);
-	else 
+	else
 		path = ft_strdup(arg);
 	return (path);
 }
@@ -89,7 +101,7 @@ static int	ft_cdcore(char **args, char *oldpwd, t_env **lst)
 	char	**vars;
 	char	*path;
 	int		ret;
-	
+
 	vars = ft_parsing(args[1]);
 	ret = ft_tabcount(vars);
 	if (ret > 1)
@@ -112,8 +124,8 @@ static int	ft_cdcore(char **args, char *oldpwd, t_env **lst)
 
 int			ft_cd(char **args, t_env **lst)
 {
-	t_env	*env;
-	int		ret;
+	t_env		*env;
+	int			ret;
 	static char	oldpwd[PATH_MAX + 1];
 
 	ret = 0;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_launch.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/29 18:17:50 by sdjeffal          #+#    #+#             */
+/*   Updated: 2016/09/29 18:42:41 by sdjeffal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 #include <stdlib.h>
 #include <unistd.h>
@@ -21,7 +33,7 @@ static char	**ft_parse_launch(char *line)
 	return (arg);
 }
 
-char	*ft_findpath(char *cmd, t_env **lst)
+char		*ft_findpath(char *cmd, t_env **lst)
 {
 	char	*path;
 	char	**tmp;
@@ -47,7 +59,7 @@ char	*ft_findpath(char *cmd, t_env **lst)
 	return (path);
 }
 
-int		ft_exec(char *cmd, char **args, char **env)
+int			ft_exec(char *cmd, char **args, char **env)
 {
 	int		status;
 	pid_t	pid_p;
@@ -75,26 +87,24 @@ int		ft_exec(char *cmd, char **args, char **env)
 	return (status);
 }
 
-int	ft_launch(char **args, t_env **lst)
+int			ft_launch(char **args, t_env **lst)
 {
 	char	**arg;
 	char	**envp;
 	char	*cmd;
 	char	*tmp;
-	char	*tmp2;
 	int		status;
 
 	cmd = ft_findpath(args[0], lst);
 	if (cmd)
 	{
 		tmp = ft_fstrjoin(cmd, " ", 3);
-		tmp2 = ft_fstrjoin(tmp, args[1], 3);
-		arg = ft_parse_launch(tmp2);
-			envp = envtotab(lst);
+		tmp = ft_fstrjoin(tmp, args[1], 1);
+		arg = ft_parse_launch(tmp);
+		envp = envtotab(lst);
 		status = ft_exec(cmd, arg, envp);
 		ft_memdel((void**)&cmd);
 		ft_memdel((void**)&tmp);
-		ft_memdel((void**)&tmp2);
 		ft_freetab(arg);
 		ft_freetab(envp);
 	}
