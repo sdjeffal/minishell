@@ -55,7 +55,7 @@ int		ft_env(char **args, t_env **lst);
 int		builtin(char **args, t_env **lst);
 void	ft_exit(char *line, char **args, t_env **lst);
 
-//ft_echo_option.c
+//ft_putbackslash.c
 void	putbackslash(char *str, char *option);
 
 //ft_launcher.c

@@ -33,6 +33,7 @@ CFILES = \
 	ft_unsetenv.c\
 	ft_strsplitshell.c\
 	ft_strsplitecho.c\
+	ft_putbackslash.c\
 	ft_putprompt.c\
 	stat.c\
 	utils.c\
