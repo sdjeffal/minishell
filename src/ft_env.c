@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/30 18:14:18 by sdjeffal          #+#    #+#             */
+/*   Updated: 2016/09/30 18:31:55 by sdjeffal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 #include <stdlib.h>
 
@@ -90,7 +102,7 @@ static int	parsevar(char **args, t_env **lst, char ***newargs)
 			if (args[i][0] == '=')
 			{
 				msgerror("env: setenv =: Invalid argument");
-				return(-1);
+				return (-1);
 			}
 			modifyenv(args[i], lst);
 			i++;

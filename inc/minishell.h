@@ -90,7 +90,7 @@ char	*ft_gethome(t_env **env);
 
 //tools.c
 char	**getpath(char *name, t_env **env);
-char	*findcdpath(char *s, t_env **lst);
+char	*findcdpath(char *s, t_env **ls);
 int		ft_tabcount(char **tab);
 char	*joinpath(char	*dest, char *src, char *oldpwd);
 char	*delonepath(char *path);

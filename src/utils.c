@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/30 18:06:20 by sdjeffal          #+#    #+#             */
+/*   Updated: 2016/09/30 18:07:44 by sdjeffal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 #include <stdlib.h>
 #include <unistd.h>
 
-char	**ft_freetab(char **tab)
+char		**ft_freetab(char **tab)
 {
 	int	i;
 
@@ -16,7 +28,7 @@ char	**ft_freetab(char **tab)
 	return (tab);
 }
 
-char	*replacevar(char *str, t_env **lst)
+char		*replacevar(char *str, t_env **lst)
 {
 	t_env	*e;
 	char	*s;
@@ -26,7 +38,7 @@ char	*replacevar(char *str, t_env **lst)
 	{
 		e = findvar("HOME", lst);
 		if (e && e->value)
-		{	
+		{
 			s = ft_strjoin(e->value, &str[1]);
 			ft_memdel((void**)&str);
 			return (s);
@@ -36,7 +48,7 @@ char	*replacevar(char *str, t_env **lst)
 	{
 		e = findvar(&str[1], lst);
 		if (e && e->value)
-		{	
+		{
 			s = ft_strdup(e->value);
 			ft_memdel((void**)&str);
 			return (s);
@@ -62,7 +74,7 @@ static int	getnbvars(t_env **lst)
 	return (i);
 }
 
-char	**envtotab(t_env **env)
+char		**envtotab(t_env **env)
 {
 	t_env	*tmp;
 	char	**tab;
@@ -89,7 +101,7 @@ char	**envtotab(t_env **env)
 	return (tab);
 }
 
-char	*ft_gethome(t_env **env)
+char		*ft_gethome(t_env **env)
 {
 	struct passwd	*pw;
 	t_env			*home;

@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 18:17:50 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/09/29 18:42:41 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/09/30 17:27:21 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ char		*ft_findpath(char *cmd, t_env **lst)
 		i++;
 	}
 	ft_freetab(tmp);
+	if (ft_strnstr(cmd, "./", 2))
+		path = ft_strdup(cmd);
 	return (path);
 }
 

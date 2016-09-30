@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 16:44:17 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/05/26 13:03:33 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/09/30 18:13:34 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ void	msgerror(const char *s)
 }
 
 void	msgexit(const char *s)
-{	
+{
 	ft_putstr_fd("minishell: ", 2);
 	msgerror(s);
 	exit(EXIT_FAILURE);
 }
-

@@ -1,26 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/30 18:32:38 by sdjeffal          #+#    #+#             */
+/*   Updated: 2016/09/30 18:32:50 by sdjeffal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
 
-/**
-static char	*ft_getcwd(t_env **env)
-{
-	t_env			*home;
-	char			*cwd;
-	char			buff[PATH_MAX + 1];
-
-	if (env && (home = findvar("PWD", env)))
-		return (home->value);
-	else
-	{
-		cwd = getcwd(buff, PATH_MAX + 1);
-		if (cwd)
-			return (cwd);
-	}
-	return (NULL);
-}
-**/
 void	ft_getcwd(char *cwd, int len, t_env **lst)
 {
 	t_env	*env;

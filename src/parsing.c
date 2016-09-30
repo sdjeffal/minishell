@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/30 18:07:54 by sdjeffal          #+#    #+#             */
+/*   Updated: 2016/09/30 18:11:03 by sdjeffal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 #include <stdlib.h>
 
 static char	**splitcommand(char *command, char *line)
 {
-	char **arg;
-	unsigned int l;
+	char			**arg;
+	unsigned int	l;
 
 	arg = NULL;
 	if (command)
@@ -75,11 +87,11 @@ char		**splitline(char *line)
 	return (NULL);
 }
 
-char	**ft_parsing(char *line)
+char		**ft_parsing(char *line)
 {
 	char	**vars;
 	char	*tmp;
-	
+
 	vars = NULL;
 	tmp = strtrimdelimit(line);
 	if (tmp)

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/30 18:11:38 by sdjeffal          #+#    #+#             */
+/*   Updated: 2016/09/30 18:12:30 by sdjeffal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-int		execute(char *line, char **args, t_env **lst)
+int				execute(char *line, char **args, t_env **lst)
 {
 	int		status;
 	char	*str;
@@ -52,9 +64,9 @@ static int		ft_minishell(t_env **lstenv)
 	return (status);
 }
 
-int	main(int ac, char **av, const char **environ)
+int				main(int ac, char **av, const char **environ)
 {
-	t_env 	*begin;
+	t_env	*begin;
 	int		status;
 
 	(void)ac;

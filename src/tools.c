@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/30 18:04:33 by sdjeffal          #+#    #+#             */
+/*   Updated: 2016/09/30 18:06:09 by sdjeffal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 #include <unistd.h>
 
@@ -16,31 +28,31 @@ char	**getpath(char *name, t_env **env)
 	return (tab);
 }
 
-char	*findcdpath(char *s, t_env **lst)
+char	*findcdpath(char *s, t_env **ls)
 {
-	char	**cdpath;
+	char	**cd;
 	char	*path;
 	int		i;
 
 	path = NULL;
-	if (!ft_strcmp(s, "/")  && !ft_strcmp(s, ".") && !ft_strcmp(s, "..") && 
-	!ft_strcmp(s, "./") && !ft_strcmp(s, "../") && (cdpath = getpath("CDPATH", lst)))
+	if (s[0] != '/' && !ft_strnstr(s, "./", 2) && !ft_strnstr(s, "../", 3) &&
+	ft_strcmp(s, ".") && ft_strcmp(s, "..") && (cd = getpath("CDPATH", ls)))
 	{
 		i = -1;
-		while (cdpath[++i])
+		while (cd[++i])
 		{
-			if (cdpath[i][ft_strlen(cdpath[i]) - 1] != '/')
-				cdpath[i] = ft_fstrjoin(cdpath[i], "/", 1);
-			path = ft_fstrjoin(cdpath[i], s, 3);
+			if (cd[i][ft_strlen(cd[i]) - 1] != '/')
+				cd[i] = ft_fstrjoin(cd[i], "/", 1);
+			path = ft_fstrjoin(cd[i], s, 3);
 			if (access(path, F_OK) != -1)
 			{
-				ft_freetab(cdpath);
+				ft_freetab(cd);
 				return (path);
 			}
 			else
 				ft_memdel((void**)&path);
 		}
-		ft_freetab(cdpath);
+		ft_freetab(cd);
 	}
 	return (path);
 }
@@ -58,7 +70,7 @@ int		ft_tabcount(char **tab)
 	return (i);
 }
 
-char *delonepath(char *path)
+char	*delonepath(char *path)
 {
 	int		i;
 	int		j;
@@ -71,7 +83,7 @@ char *delonepath(char *path)
 	s = ft_strdup("/");
 	if (tab && j > 0)
 	{
-	 	i = -1;
+		i = -1;
 		while (tab && tab[++i] && i < j)
 		{
 			if (i > 0)
@@ -84,7 +96,7 @@ char *delonepath(char *path)
 	return (s);
 }
 
-char	*joinpath(char	*dest, char *src, char *oldpwd)
+char	*joinpath(char *dest, char *src, char *oldpwd)
 {
 	char	**tabpath;
 	int		i;
