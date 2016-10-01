@@ -24,7 +24,6 @@ CFILES = \
 	msgerror.c\
 	ft_cd.c\
 	ft_echo.c\
-	ft_echo_option.c\
 	ft_env.c\
 	ft_lstenv.c\
 	ft_launch.c\
@@ -32,7 +31,6 @@ CFILES = \
 	ft_setenv.c\
 	ft_unsetenv.c\
 	ft_strsplitshell.c\
-	ft_strsplitecho.c\
 	ft_putbackslash.c\
 	ft_putprompt.c\
 	stat.c\

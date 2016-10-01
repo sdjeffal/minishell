@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 18:17:50 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/10/01 03:50:24 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 15:12:22 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
-
-static char	**ft_parse_launch(char *line)
-{
-	char **arg;
-	char *tmp;
-
-	arg = NULL;
-	if (line)
-	{
-		tmp = strtrimdelimit(line);
-		if (tmp)
-		{
-			arg = ft_strsplitshell(tmp);
-			ft_memdel((void**)&tmp);
-		}
-	}
-	return (arg);
-}
 
 char		*ft_findpath(char *cmd, t_env **lst)
 {

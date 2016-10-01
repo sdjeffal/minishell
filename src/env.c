@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 16:55:23 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/09/29 16:56:27 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 15:16:36 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,28 @@ void	ft_cleanenv(t_env **lst)
 		}
 		*lst = NULL;
 	}
+}
+
+void	modifyenv(char *var, t_env **lst)
+{
+	int		i;
+	char	*s;
+	char	*tmp[2];
+
+	ft_bzero(tmp, 2);
+	i = 0;
+	while (var[i] && var[i] != '=')
+		i++;
+	if (i)
+	{
+		tmp[0] = ft_strsub(var, 0, i);
+		s = ft_strchr(var, '=');
+		tmp[1] = ft_strdup(++s);
+	}
+	if (tmp[0] && tmp[1])
+		setter_env(tmp, 2, lst);
+	else
+		setter_env(tmp, 1, lst);
+	free(tmp[0]);
+	free(tmp[1]);
 }

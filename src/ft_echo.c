@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 17:54:01 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/09/29 18:05:35 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 15:05:24 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	ft_parseparams(char **ar, char *opt, char **param, t_env **lst)
 	}
 }
 
-static char	**ft_parsing_echo(char *line, int *status, t_env **lst)
+static char	**ft_parsing_echo(char *line, t_env **lst)
 {
 	char	**args;
 	char	*tmp;
@@ -93,7 +93,7 @@ static char	**ft_parsing_echo(char *line, int *status, t_env **lst)
 	tmp = strtrimdelimit(line);
 	if (tmp)
 	{
-		*status = ft_strsplitecho(&args, tmp);
+		args = ft_strsplitshell(tmp);
 		ft_memdel((void**)&tmp);
 		ft_parseparams(args, opt, &tmp, lst);
 		args = ft_freetab(args);
@@ -111,15 +111,9 @@ int			ft_echo(char **args, t_env **lst)
 {
 	char	**vars;
 	int		i;
-	int		status;
 
-	if (args[1] && (vars = ft_parsing_echo(args[1], &status, lst)))
+	if (args[1] && (vars = ft_parsing_echo(args[1], lst)))
 	{
-		if (status == -1)
-		{
-			msgerror("Unmatched quote");
-			return (-1);
-		}
 		if (vars)
 		{
 			if (vars[0][1] == 'e')

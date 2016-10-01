@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 18:14:18 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/10/01 04:49:32 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 15:18:05 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,6 @@ static int	get_opt(char **args, char *opt)
 		}
 	}
 	return (0);
-}
-
-static void	modifyenv(char *var, t_env **lst)
-{
-	int		i;
-	char	*s;
-	char	*tmp[2];
-
-	ft_bzero(tmp, 2);
-	i = 0;
-	while (var[i] && var[i] != '=')
-		i++;
-	if (i)
-	{
-		tmp[0] = ft_strsub(var, 0, i);
-		s = ft_strchr(var, '=');
-		tmp[1] = ft_strdup(++s);
-	}
-	if (tmp[0] && tmp[1])
-		setter_env(tmp, 2, lst);
-	else
-		setter_env(tmp, 1, lst);
-	free(tmp[0]);
-	free(tmp[1]);
 }
 
 static char	**ft_realloc_rest(char **args)
@@ -113,7 +89,7 @@ static int	parsevar(char **args, t_env **lst, char ***newargs)
 	return (0);
 }
 
-int			ft_envcore(char **args, char opt[2], t_env **lst)
+static int	ft_envcore(char **args, char opt[2], t_env **lst)
 {
 	char	**argv;
 	t_env	*bak;
@@ -135,7 +111,6 @@ int			ft_envcore(char **args, char opt[2], t_env **lst)
 	ft_cleanenv(&bak);
 	return (status);
 }
-
 
 int			ft_env(char **args, t_env **lst)
 {
