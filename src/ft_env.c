@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 18:14:18 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/09/30 18:31:55 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 04:49:32 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,35 +113,49 @@ static int	parsevar(char **args, t_env **lst, char ***newargs)
 	return (0);
 }
 
-int	ft_env(char **args, t_env **lst)
+int			ft_envcore(char **args, char opt[2], t_env **lst)
 {
 	char	**argv;
+	t_env	*bak;
+	int		status;
+	
+	argv = NULL;
+	bak = ft_cpylst(lst);
+	if (*opt)
+		ft_cleanenv(&bak);
+	if (parsevar(args, &bak, &argv) == -1)
+		return (-1);
+	if (!argv)
+		ft_putenv(&bak);
+	else
+	{
+		status = execute(NULL, argv, &bak);
+		ft_freetab(argv);
+	}
+	ft_cleanenv(&bak);
+	return (status);
+}
+
+
+int			ft_env(char **args, t_env **lst)
+{
 	char	**tmp;
 	char	opt[2];
-	t_env	*bak;
+	int 	status;
 
-	bak = ft_cpylst(lst);
-	argv = NULL;
 	tmp = NULL;
 	ft_bzero(opt, 2);
+	status = EXIT_SUCCESS;
 	if (!args[1])
-		ft_putenv(&bak);
+		ft_putenv(lst);
 	else
 	{
 		tmp = ft_parsing(args[1]);
 		if (get_opt(tmp, opt) == -1)
 			return (-1);
-		if (*opt)
-			ft_cleanenv(&bak);
-		if (parsevar(tmp, &bak, &argv) == -1)
+		if ((status = ft_envcore(tmp, opt, lst)) == -1)
 			return (-1);
-		if (!argv)
-			ft_putenv(&bak);
-		else
-			execute(NULL, argv, &bak);
 	}
-	ft_cleanenv(&bak);
 	ft_freetab(tmp);
-	ft_freetab(argv);
-	return (EXIT_SUCCESS);
+	return (status);
 }
