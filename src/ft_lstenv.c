@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 18:32:23 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/09/30 18:32:25 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 16:58:52 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_env	*newvar(char *key, char *value)
 	}
 	else
 		msgexit("error malloc: function(newelem)");
-	return(new);
+	return (new);
 }
 
 void	pushback(char *key, char *value, t_env **begin)
@@ -39,7 +39,7 @@ void	pushback(char *key, char *value, t_env **begin)
 
 	if (*begin == NULL)
 		*begin = newvar(key, value);
-	else 
+	else
 	{
 		tmp = *begin;
 		while (tmp->next)
@@ -65,7 +65,7 @@ t_env	*findvar(char *key, t_env **begin)
 	return (NULL);
 }
 
-t_env	*updatevar(char *key, char *value ,t_env **begin)
+t_env	*updatevar(char *key, char *value, t_env **begin)
 {
 	t_env	*tmp;
 

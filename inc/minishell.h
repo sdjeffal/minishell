@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/01 16:49:31 by sdjeffal          #+#    #+#             */
+/*   Updated: 2016/10/01 16:52:56 by sdjeffal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -10,20 +22,19 @@
 
 # define PROMPT "$>"
 
-typedef struct	stat	t_stat;
-
+typedef struct stat		t_stat;
 typedef struct			s_env
 {
 	char			*key;
 	char			*value;
-	struct	s_env	*next;
+	struct s_env	*next;
 }						t_env;
 
 int						execute(char *line, char **args, t_env **lst);
 t_env					*newvar(char *key, char *value);
 void					pushback(char *key, char *value, t_env **begin);
 t_env					*findvar(char *key, t_env **begin);
-t_env					*updatevar(char *key, char *value ,t_env **begin);
+t_env					*updatevar(char *key, char *value, t_env **begin);
 void					freevar(t_env **env);
 int						ft_cpyenv(const char **environ, t_env **begin);
 char					**splitenv(const char *str);
@@ -44,7 +55,7 @@ int						ft_env(char **args, t_env **lst);
 int						builtin(char **args, t_env **lst);
 void					ft_exit(char *line, char **args, t_env **lst);
 void					putbackslash(char *str, char *option);
-int						ft_launch(char **args, t_env** lst);
+int						ft_launch(char **args, t_env **lst);
 void					msgerropt(char c);
 void					msgexit(const char *s);
 void					msgerror(const char *s);

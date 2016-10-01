@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 18:32:04 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/09/30 18:32:06 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 16:59:52 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int				ft_setenv(char **args, t_env **lst)
 	}
 	else
 	{
-		if(*lst)
+		if (*lst)
 			ft_putenv(lst);
 	}
 	return (EXIT_SUCCESS);

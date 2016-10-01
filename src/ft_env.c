@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 18:14:18 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/10/01 15:18:05 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 16:54:37 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static int	ft_envcore(char **args, char opt[2], t_env **lst)
 	char	**argv;
 	t_env	*bak;
 	int		status;
-	
+
 	argv = NULL;
 	bak = ft_cpylst(lst);
 	if (*opt)
@@ -116,7 +116,7 @@ int			ft_env(char **args, t_env **lst)
 {
 	char	**tmp;
 	char	opt[2];
-	int 	status;
+	int		status;
 
 	tmp = NULL;
 	ft_bzero(opt, 2);

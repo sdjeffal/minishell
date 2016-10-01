@@ -6,18 +6,18 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 18:32:13 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/09/30 18:32:15 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 17:00:54 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 #include <stdlib.h>
 
-int delvar(char *key, t_env **lst)
+int	delvar(char *key, t_env **lst)
 {
 	t_env	*tmp;
 	t_env	*pre;
-	
+
 	pre = *lst;
 	if (!ft_strcmp(pre->key, key))
 	{
@@ -26,7 +26,7 @@ int delvar(char *key, t_env **lst)
 		return (1);
 	}
 	tmp = pre->next;
-	while(tmp)
+	while (tmp)
 	{
 		if (!ft_strcmp(tmp->key, key))
 		{

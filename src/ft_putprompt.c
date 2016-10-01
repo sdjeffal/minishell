@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 18:33:03 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/09/30 18:33:05 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 16:57:56 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <limits.h>
 
-void	ft_putcwd(char *cwd, struct passwd *pw)
+void		ft_putcwd(char *cwd, struct passwd *pw)
 {
 	char	*path;
 	int		n;
@@ -51,12 +51,12 @@ static char	*ft_initpwd(t_env **lst)
 	return (pwd);
 }
 
-void		ft_putprompt(t_env	**lst)
+void		ft_putprompt(t_env **lst)
 {
 	struct passwd	*pw;
 	char			*cwd;
 
-	cwd = ft_initpwd(lst);;
+	cwd = ft_initpwd(lst);
 	pw = getpwuid(getuid());
 	if (pw && pw->pw_name && cwd[0])
 	{

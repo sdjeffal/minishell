@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 18:32:38 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/09/30 18:32:50 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 16:59:38 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	ft_getcwd(char *cwd, int len, t_env **lst)
 		getcwd(cwd, len);
 }
 
-int			ft_pwd(char **args, t_env **lst)
+int		ft_pwd(char **args, t_env **lst)
 {
 	char	cwd[PATH_MAX + 1];
-	
+
 	ft_getcwd(cwd, PATH_MAX + 1, lst);
 	ft_putendl(cwd);
 	return (EXIT_SUCCESS);

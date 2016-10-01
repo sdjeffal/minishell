@@ -6,13 +6,13 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 17:51:19 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/09/29 18:36:06 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 17:02:25 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static	void ft_putcharbackslash(int c)
+static void	ft_putcharbackslash(int c)
 {
 	if (c == '\\')
 		ft_putchar('\\');
@@ -34,9 +34,9 @@ static	void ft_putcharbackslash(int c)
 
 static int	ft_atoct(int octal)
 {
-	long int dec;
-	int tmp;
-	int	i;
+	long int	dec;
+	int			tmp;
+	int			i;
 
 	dec = 0;
 	i = 0;
@@ -44,16 +44,16 @@ static int	ft_atoct(int octal)
 	{
 		tmp = octal % 10;
 		octal /= 10;
-		dec += tmp * ft_pow(8, i++); 
+		dec += tmp * ft_pow(8, i++);
 	}
 	return (dec);
 }
 
 static int	ft_putcharoctal(char *str)
 {
-	int n;
-	int v;
-	char val[4];
+	int		n;
+	int		v;
+	char	val[4];
 
 	n = 0;
 	bzero(val, 4);
@@ -101,12 +101,12 @@ void		putbackslash(char *s, char *option)
 		{
 			n = parsingbackslash(&s[i + 1]);
 			if (n == -1)
-				break;
+				break ;
 			i = i + n + 1;
 		}
 		else
 			ft_putchar(s[i]);
 	}
 	if (option[0] != 'n' && n != -1)
-			ft_putchar('\n');
+		ft_putchar('\n');
 }
