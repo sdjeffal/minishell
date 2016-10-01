@@ -6,7 +6,7 @@
 /*   By: sdjeffal <sdjeffal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 18:17:50 by sdjeffal          #+#    #+#             */
-/*   Updated: 2016/09/30 17:27:21 by sdjeffal         ###   ########.fr       */
+/*   Updated: 2016/10/01 03:50:24 by sdjeffal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char		*ft_findpath(char *cmd, t_env **lst)
 		i++;
 	}
 	ft_freetab(tmp);
-	if (ft_strnstr(cmd, "./", 2))
+	if (ft_strnstr(cmd, "./", 2) || cmd[0] == '/')
 		path = ft_strdup(cmd);
 	return (path);
 }
@@ -100,13 +100,13 @@ int			ft_launch(char **args, t_env **lst)
 	cmd = ft_findpath(args[0], lst);
 	if (cmd)
 	{
-		tmp = ft_fstrjoin(cmd, " ", 3);
-		tmp = ft_fstrjoin(tmp, args[1], 1);
-		arg = ft_parse_launch(tmp);
-		envp = envtotab(lst);
-		status = ft_exec(cmd, arg, envp);
-		ft_memdel((void**)&cmd);
+		tmp = ft_fstrjoin(cmd, " ", 1);
+		cmd = ft_fstrjoin(tmp, args[1], 3);
 		ft_memdel((void**)&tmp);
+		arg = ft_parsing(cmd);
+		ft_memdel((void**)&cmd);
+		envp = envtotab(lst);
+		status = ft_exec(arg[0], arg, envp);
 		ft_freetab(arg);
 		ft_freetab(envp);
 	}
